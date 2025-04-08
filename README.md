@@ -7,9 +7,9 @@
 
 <img src="./Screenshot.png" alt="Screenshot" width="50%" />
 
-很多时候 FreeKill 游戏服务器的主人（以下简称“服主”）和这个服务器上某个扩展包的开发者（以下简称“开发者”）并不是同一个人。开发者完成了某些开发并想推送到服务器上游玩，需要找服主帮忙。也许没有空——这导致开发者开发的最新不能即刻联机，是个非常沮丧的事情。之前有过每天定时使用自动脚本一键更新的设计，但当前由于游戏正处于重大开发阶段，一键更新所有扩展包到最新版本会产生各种问题，诸如报错、无法进入服务器等。
+很多时候 [新月杀（FreeKill）](https://github.com/Qsgs-Fans/FreeKill) 游戏服务器的主人（以下简称“服主”）和这个服务器上某个扩展包的开发者（以下简称“开发者”）并不是同一个人。开发者完成了某些开发并想推送到服务器上游玩，需要找服主帮忙。也许没有空——这导致开发者开发的最新不能即刻联机，是个非常沮丧的事情。之前有过每天定时使用自动脚本一键更新的设计，但当前由于游戏正处于重大开发阶段，一键更新所有扩展包到最新版本会产生各种问题，诸如报错、无法进入服务器等。
 
-本仓库尝试以一种方式解决这个问题。经过缜密思考与设计，我推出并实现了这一方案：因为 FreeKill 服务端现已支持热更新，所以我们通过允许任何人（包括扩展包的开发者）自主更新（不用维护新的用户名和密码、不用告知任何人服务器密码、不授予任何新的权限），并设置较长（其实 12 小时对于这个任务并不长）的冷却时间，结合网页版，获得用户体验优秀、多端支持的更新体验。也能反向督促扩展包开发者在 master 分支中提交最少 bug 的版本。
+本仓库尝试以一种方式解决这个问题。经过缜密思考与设计，我推出并实现了这一方案：因为 FreeKill 服务端现已支持热更新，所以我们通过允许任何人自主更新（不用维护新的用户名和密码、不用告知任何人服务器密码、不授予任何新的权限），并设置较长（其实 12 小时对于这个任务并不长）的冷却时间，结合网页版多端支持、易于访问的特性，获得用户体验优秀的更新体验。也能反向督促开发者在 master 分支中提交最少 bug 的版本。
 
 本项目的一个真实实例运行在 [这里](http://47.115.41.110/2hu/)。试试看！顺带一提，欢迎来我们的新月杀服务器：`47.115.41.110:9527`。
 
@@ -50,22 +50,16 @@ grep -A 5 "Running command: \"u 2hu\"" /tmp/screen_output.XXXXXX
 
 #### 放置后端脚本
 
-```
-sudo cp 2hu.sh /usr/local/bin/
-sudo chmod +x /usr/local/bin/2hu.sh
-```
+我是将 `2hu.sh` 放置在 `/usr/local/bin/` 下。你可以按自己的喜好来。
 
 #### 部署前端
 
-```
-git clone https://github.com/baisebaoma/freekill-selfservice-updater.git
-sudo cp -r web/* /var/www/html/
-```
+我是将 `index.php` 放置在 `/var/www/html/2hu` 下，这样访问 `[我的服务器]/2hu` 就可以。你可以按自己的喜好来。
 
-#### 配置Screen会话（必须）
+#### 配置 Screen 会话
 
 ```
-screen -S freekill -dm ./freekill-server
+screen -S freekill -dm
 ```
 
 ⚠️ 注意事项
@@ -87,4 +81,5 @@ screen -S freekill -dm ./freekill-server
 [![Star History Chart](https://api.star-history.com/svg?repos=baisebaoma/freekill-selfservice-updater&type=Date)](https://www.star-history.com/#baisebaoma/freekill-selfservice-updater&Date)
 
 ## 📜 协议声明
+
 本项目采用 ​​GPL-3.0​​ 开源协议，任何衍生项目必须保持开源。
