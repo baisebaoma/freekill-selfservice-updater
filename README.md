@@ -29,8 +29,6 @@
 
 ## 📦 后端工作原理
 
-> 注意：当前版本的后端文件 `2hu.sh` 在被 PHP 执行时会有权限问题。如果你的 FreeKill 服务端是使用无法返回输出结果，但是可以正常执行代码。这也就是为什么前端并没有给出任何来自 FreeKill 服务端的输出。暂时无法解决……
-
 ```
 #!/bin/bash
 # 通过Screen会话执行更新命令
@@ -62,6 +60,22 @@ grep -A 5 "Running command: \"u 2hu\"" /tmp/screen_output.XXXXXX
 
 ```
 screen -S freekill -dm
+```
+
+#### 配置 sudoers，允许 www-data 用户执行特定 screen 命令​​
+
+> 注意：当前版本的后端文件 `2hu.sh` 在被 PHP 执行时会有权限问题。如果你的 FreeKill 服务端是使用 `root` 用户创建的，那么无法返回输出结果（因为 PHP 使用的是 `www-data` 用户），但是可以正常执行代码。这也就是为什么前端并没有给出任何来自 FreeKill 服务端的输出。尝试了很多办法，暂时无法解决……
+
+```
+sudo visudo
+```
+
+在文件末尾添加：
+
+```
+www-data ALL=(root) NOPASSWD: /usr/bin/screen -r freekill
+www-data ALL=(root) NOPASSWD: /usr/bin/screen -S freekill -X quit
+www-data ALL=(root) NOPASSWD: /usr/bin/screen -S freekill -X stuff *
 ```
 
 ⚠️ 注意事项
