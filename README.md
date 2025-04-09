@@ -5,7 +5,9 @@
 ![License](https://img.shields.io/badge/License-GPL--3.0-blue)
 ![Access](https://img.shields.io/badge/Access-Open_to_all-green)
 
-<img src="./Screenshot.png" alt="Screenshot" width="50%" />
+<img src="./Screenshot2.png" alt="Screenshot-success" width="50%" />
+
+<img src="./Screenshot.png" alt="Screenshot-oncooldown" width="50%" />
 
 很多时候 [新月杀（FreeKill）](https://github.com/Qsgs-Fans/FreeKill) 游戏服务器的主人（以下简称“服主”）和这个服务器上某个扩展包的开发者（以下简称“开发者”）并不是同一个人。开发者完成了某些开发并想推送到服务器上游玩，需要找服主帮忙。也许没有空——这导致开发者开发的最新不能即刻联机，是个非常沮丧的事情。之前有过每天定时使用自动脚本一键更新的设计，但当前由于游戏正处于重大开发阶段，一键更新所有扩展包到最新版本会产生各种问题，诸如报错、无法进入服务器等。
 
